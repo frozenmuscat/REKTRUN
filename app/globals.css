@@ -33,3 +33,7 @@
 .titleScene .gameLogo{display:block;top:47%;z-index:4;background:#04100deb;color:#f4ffe5;border-color:var(--wild);text-shadow:5px 5px 0 #14291c}.titleScene .gameLogo span{color:var(--wild)}
 .titleScene:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 0 25%,#0208069c 72%),repeating-linear-gradient(0deg,#fff0 0 3px,#0002 4px);pointer-events:none;z-index:1}
 .titleScene .pixelBtn,.titleScene .hamb,.titleScene .connectCorner,.titleScene .pixelStatus{z-index:6}
+
+/* Character art must stay fully transparent outside the sprite silhouette. */
+.selectScene .chosenRunner,.selectScene .chosenRunner>i,.selectScene .chosenRunner>.runnerSprite{background-color:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;clip-path:none!important;backdrop-filter:none!important}
+.selectScene .chosenRunner>.runnerSprite{filter:none!important}
