@@ -7,6 +7,7 @@ export const db=()=>{const d=(env as unknown as {DB?:D1Database}).DB;if(!d)throw
 export async function init(){const d=db();await d.batch([
  d.prepare("CREATE TABLE IF NOT EXISTS auth_nonces (address TEXT PRIMARY KEY, nonce TEXT NOT NULL, expires_at INTEGER NOT NULL)"),
  d.prepare("CREATE TABLE IF NOT EXISTS runs (id TEXT PRIMARY KEY, address TEXT NOT NULL, started_at INTEGER NOT NULL, finished_at INTEGER, duration_ms INTEGER, distance INTEGER, gems INTEGER, rekt INTEGER, score INTEGER, valid INTEGER NOT NULL DEFAULT 0)"),
+ d.prepare("CREATE TABLE IF NOT EXISTS profiles (address TEXT PRIMARY KEY, shards INTEGER NOT NULL DEFAULT 0, runner TEXT NOT NULL DEFAULT 'byte', gear TEXT NOT NULL DEFAULT 'blade', unlocked_runners TEXT NOT NULL DEFAULT '[\"byte\"]', unlocked_gear TEXT NOT NULL DEFAULT '[\"blade\"]')"),
  d.prepare("CREATE INDEX IF NOT EXISTS idx_runs_valid_score ON runs(valid, score DESC)"),
  d.prepare("CREATE INDEX IF NOT EXISTS idx_runs_address ON runs(address)")]);}
 const b64=(b:ArrayBuffer)=>btoa(String.fromCharCode(...new Uint8Array(b))).replaceAll("+","-").replaceAll("/","_").replaceAll("=","");
