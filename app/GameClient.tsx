@@ -6,10 +6,10 @@ import {setAudioEnabled,startMusic,unlockAudio} from "./gameAudio";
 declare global{interface Window{ethereum?:{request:(a:{method:string;params?:unknown[]})=>Promise<unknown>}}}
 const CHAIN={id:46630,hex:"0xb626",name:"Robinhood Chain Testnet",rpc:"https://rpc.testnet.chain.robinhood.com",explorer:"https://explorer.testnet.chain.robinhood.com"};
 const RUNNERS=[
- {id:"byte",name:"BYTE",color:"#b6ff33",cost:0,perk:"BALANCED",face:"B"},
- {id:"nova",name:"NOVA",color:"#65f8ff",cost:20,perk:"DOUBLE SHARDS",face:"N"},
- {id:"ember",name:"EMBER",color:"#ff6b4a",cost:35,perk:"EXTRA HEART",face:"E"},
- {id:"void",name:"VOID",color:"#ad7aff",cost:50,perk:"HIGH JUMP",face:"V"}
+ {id:"byte",name:"BYTE",color:"#b6ff33",cost:0,perk:"BALANCED",attack:"ARC SLASH",skill:"PULSE BLADE",face:"B"},
+ {id:"nova",name:"NOVA",color:"#65f8ff",cost:20,perk:"DOUBLE SHARDS",attack:"TWIN CUT",skill:"CHAIN LIGHTNING",face:"N"},
+ {id:"ember",name:"EMBER",color:"#ff6b4a",cost:35,perk:"EXTRA HEART",attack:"FLAME CLEAVE",skill:"INFERNO WAVE",face:"E"},
+ {id:"void",name:"VOID",color:"#ad7aff",cost:50,perk:"HIGH JUMP",attack:"VOID REND",skill:"PHASE STRIKE",face:"V"}
 ];
 const GEAR=[{id:"blade",name:"PULSE BLADE",cost:0,perk:"LONG RANGE"},{id:"boots",name:"GRAV BOOTS",cost:15,perk:"HIGH JUMP"},{id:"shield",name:"HEX SHIELD",cost:30,perk:"EXTRA HEART"},{id:"magnet",name:"SHARD MAGNET",cost:45,perk:"DOUBLE SHARDS"}];
 const BOSSES=[
