@@ -1,0 +1,3 @@
+import { sqliteTable,text,integer,index } from "drizzle-orm/sqlite-core";
+export const authNonces=sqliteTable("auth_nonces",{address:text("address").primaryKey(),nonce:text("nonce").notNull(),expiresAt:integer("expires_at").notNull()});
+export const runs=sqliteTable("runs",{id:text("id").primaryKey(),address:text("address").notNull(),startedAt:integer("started_at").notNull(),finishedAt:integer("finished_at"),durationMs:integer("duration_ms"),distance:integer("distance"),gems:integer("gems"),rekt:integer("rekt"),score:integer("score"),valid:integer("valid").notNull().default(0)},t=>[index("idx_runs_valid_score").on(t.valid,t.score),index("idx_runs_address").on(t.address)]);

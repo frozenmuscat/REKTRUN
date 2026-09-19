@@ -1,0 +1,2 @@
+import { init,db,json,session,token } from "../../../../lib/server";
+export async function POST(req:Request){const address=await session(req);if(!address)return json({error:"Unauthorized"},401);await init();const id=crypto.randomUUID(),started=Date.now();await db().prepare("INSERT INTO runs(id,address,started_at) VALUES(?,?,?)").bind(id,address,started).run();return json({id,token:await token({id,address,started,exp:started+30*60_000})})}

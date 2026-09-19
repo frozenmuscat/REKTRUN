@@ -1,0 +1,2 @@
+import { init,db,json } from "../../../lib/server";
+export async function GET(){try{await init();const q=await db().prepare("SELECT address,MAX(score) score,MAX(distance) distance,MAX(gems) gems,MAX(rekt) rekt FROM runs WHERE valid=1 GROUP BY address ORDER BY score DESC LIMIT 100").all<{address:string;score:number;distance:number;gems:number;rekt:number}>();return json({scores:(q.results||[]).map((x,i)=>({...x,rank:i+1}))})}catch{return json({scores:[]})}}
