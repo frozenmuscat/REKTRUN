@@ -15,7 +15,7 @@ export function startArcadeGame(canvas:HTMLCanvasElement,keys:Set<string>,o:Opti
  const p={x:130,y:200,w:42,h:54,vx:0,vy:0,hp:5,maxHp:5,ammo:3,maxAmmo:15,grounded:false,lastGround:0,jumpQueued:-99,dash:0,dashCd:0,slide:0,attack:0,attackCd:0,invuln:0,face:1};
  const was={jump:false,dash:false,melee:false,ranged:false};
  if(o.runner.id==="ember"||o.gear.id==="shield")p.hp=p.maxHp=7;
- const highJump=o.runner.id==="void"||o.gear.id==="boots",doubleGems=o.runner.id==="nova"||o.gear.id==="magnet";
+ const highJump=o.runner.id==="void"||o.gear.id==="boots",doubleGems=o.runner.id==="nova"||o.gear.id==="magnet",meleeRange=o.gear.id==="blade"?130:95;
  let enemies:Enemy[]=[],pickups:Pickup[]=[],shots:Shot[]=[],hazards:Hazard[]=[],echoes:{x:number;y:number;a:number}[]=[],particles:{x:number;y:number;vx:number;vy:number;a:number;c:string}[]=[];
  const resize=()=>{const d=Math.min(devicePixelRatio,2);canvas.width=innerWidth*d;canvas.height=innerHeight*d;ctx.setTransform(d,0,0,d,0,0)};resize();addEventListener("resize",resize);
  const burst=(x:number,y:number,c:string,n=9)=>{for(let i=0;i<n;i++)particles.push({x,y,vx:(Math.random()-.5)*240,vy:(Math.random()-.7)*220,a:1,c})};
@@ -45,7 +45,7 @@ export function startArcadeGame(canvas:HTMLCanvasElement,keys:Set<string>,o:Opti
   if(!boss){spawnClock-=dt;if(spawnClock<=0){spawnPattern(W,H,diff);spawnClock=Math.max(.72,1.8-diff*.75)}}
   [...enemies,...pickups,...hazards].forEach(e=>e.x-=scroll);shots.forEach(s=>{s.x+=(s.vx-scroll)*dt;s.y+=s.vy*dt});
   enemies.forEach(e=>{e.x-=e.vx*dt*(e.kind==="flyer"?.6:1);if(e.kind==="flyer")e.y+=Math.sin(now/280+e.x/90)*55*dt;if(e.kind==="shooter"){e.cool-=dt;if(e.cool<=0){e.cool=Math.max(.7,1.5-diff*.5);shots.push({x:e.x,y:e.y+15,w:13,h:9,vx:-260-diff*120,vy:0,enemy:true})}}if(hit(p,e)){if(p.vy>120&&p.y+p.h<e.y+e.h*.55){killEnemy(e);p.vy=-480}else damage()}});
-  if(p.attack>0){const a={x:p.face>0?p.x+p.w:p.x-95,y:p.y-8,w:95,h:p.h+16};enemies.forEach(e=>{if(e.hp>0&&hit(a,e))killEnemy(e)});if(boss&&hit(a,boss)){boss.hp--;p.attack=0;burst(boss.x,boss.y,o.world.color,5)}}
+  if(p.attack>0){const a={x:p.face>0?p.x+p.w:p.x-meleeRange,y:p.y-8,w:meleeRange,h:p.h+16};enemies.forEach(e=>{if(e.hp>0&&hit(a,e))killEnemy(e)});if(boss&&hit(a,boss)){boss.hp--;p.attack=0;burst(boss.x,boss.y,o.world.color,5)}}
   pickups=pickups.filter(q=>{if(hit(p,q)){if(q.kind==="gem")gems+=doubleGems?2:1;if(q.kind==="heart")p.hp=Math.min(p.maxHp,p.hp+2);if(q.kind==="ammo")p.ammo=Math.min(p.maxAmmo,p.ammo+3);burst(q.x,q.y,q.kind==="heart"?"#ff48d7":q.kind==="ammo"?"#f7f7ff":"#65f8ff",6);return false}return q.x>-50});
   hazards.forEach(h=>{if(hit(p,h)){if(h.kind==="mushroom"){p.vy=-720;p.y=h.y-p.h-2}else if(h.kind==="spike")damage();else if(h.kind==="pit"&&p.grounded===false){/* fall naturally */}}});
   shots=shots.filter(s=>{if(s.enemy&&hit(p,s)){damage();return false}if(!s.enemy){const e=enemies.find(e=>e.hp>0&&hit(s,e));if(e){killEnemy(e);return false}if(boss&&hit(s,boss)){boss.hp--;burst(s.x,s.y,o.world.color,4);return false}}return s.x>-30&&s.x<W+30});enemies=enemies.filter(e=>e.hp>0&&e.x>-100);hazards=hazards.filter(h=>h.x>-200);
