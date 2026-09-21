@@ -20,17 +20,18 @@ function Sprite({column,row=0,className=""}:{column:number;row?:number;className
 
 export default function Home(){return <main className="officialHome">
  <header className="officialNav">
-  <a className="officialBrand" href="/" aria-label="REKTRUN home"><span>R</span><b>REKTRUN</b></a>
+  <a className="officialBrand" href="/" aria-label="REKTRUN home"><span className="officialLogo"><img src="/rektrun-logo.png" alt=""/></span><b>REKTRUN</b></a>
   <nav aria-label="Primary navigation"><a className="active" href="#game">GAME</a><a href="#runners">RUNNERS</a><a href="#world">WORLD</a><a href="/docs">DOCS</a></nav>
   <div className="officialNavActions"><small>ROBINHOOD CHAIN<br/>EXCLUSIVE</small><a href="/play">CONNECT WALLET</a></div>
  </header>
 
  <section className="officialHero" id="game">
   <div className="officialHeroShade"/>
+  <div className="officialHeroLogo" aria-hidden="true"><img src="/rektrun-logo.png" alt=""/></div>
   <div className="officialHeroCopy">
    <p className="officialKicker"><span/> SEASON 01 · THE WILD CHAIN</p>
    <h1>REKT<span>RUN</span></h1>
-   <p className="officialLead">A fast browser action platformer where every route shifts, every Guardian fights differently, and every verified run counts.</p>
+   <p className="officialLead">A browser-native action platformer built exclusively for Robinhood Chain. Master movement, melee combat, changing routes, and distinct Guardian encounters.</p>
    <div className="officialHeroButtons"><a className="officialPrimary" href="/play">PLAY NOW <b>▶</b></a><a className="officialSecondary" href="#how">HOW TO PLAY</a></div>
    <div className="officialHeroMeta"><span>BROWSER NATIVE</span><span>MELEE COMBAT</span><span>WALLET VERIFIED</span></div>
   </div>
@@ -39,10 +40,10 @@ export default function Home(){return <main className="officialHome">
  </section>
 
  <section className="officialPillars" aria-label="Core game features">
-  <article><small>01 / CHOOSE</small><h3>Four runners.<br/>Four combat styles.</h3><Sprite column={0}/></article>
-  <article><small>02 / FIGHT</small><h3>Read the pattern.<br/>Break the Guardian.</h3><Sprite column={1} row={1}/></article>
-  <article><small>03 / COLLECT</small><h3>Claim Core Shards.<br/>Unlock your build.</h3><Sprite column={1} row={3}/></article>
-  <article><small>04 / RISE</small><h3>Verified scores.<br/>Seasonal rankings.</h3><Sprite column={3}/></article>
+  <article><div><small>01 / CHOOSE</small><h3>Four runners.<br/>Four combat styles.</h3></div><div className="officialPillarArt"><Sprite column={0}/></div></article>
+  <article><div><small>02 / FIGHT</small><h3>Read the pattern.<br/>Break the Guardian.</h3></div><div className="officialPillarArt"><Sprite column={1} row={1}/></div></article>
+  <article><div><small>03 / COLLECT</small><h3>Claim Core Shards.<br/>Unlock your build.</h3></div><div className="officialPillarArt"><Sprite column={1} row={3}/></div></article>
+  <article><div><small>04 / RISE</small><h3>Verified scores.<br/>Seasonal rankings.</h3></div><div className="officialPillarArt"><Sprite column={3}/></div></article>
  </section>
 
  <section className="officialRoster" id="runners">
@@ -51,7 +52,7 @@ export default function Home(){return <main className="officialHome">
  </section>
 
  <section className="officialWorld" id="world">
-  <div className="officialWorldCopy"><small>THE WILD CHAIN</small><h2>NO TWO RUNS<br/><em>STAY THE SAME.</em></h2><p>Vertical ruins, breakable routes, roaming creatures, traps, and shifting platform patterns remix each expedition. Reach the arena, defeat its Guardian, and carry your score onto the chain.</p><dl><div><dt>4</dt><dd>RUNNERS</dd></div><div><dt>4</dt><dd>GUARDIANS</dd></div><div><dt>∞</dt><dd>ROUTES</dd></div></dl><a href="/docs">READ THE FIELD MANUAL →</a></div>
+  <div className="officialWorldCopy"><small>THE WILD CHAIN</small><h2>NO TWO RUNS<br/><em>STAY THE SAME.</em></h2><p>Run through vertical ruins, moving platforms, traps, and roaming creatures. Collect Core Shards, reach the arena, learn the Guardian’s attack pattern, and finish with a wallet-verified score.</p><dl><div><dt>4</dt><dd>RUNNERS</dd></div><div><dt>4</dt><dd>GUARDIANS</dd></div><div><dt>∞</dt><dd>ROUTES</dd></div></dl><a href="/docs">READ THE FIELD MANUAL →</a></div>
   <div className="officialEncounter"><div className="officialEncounterScene"/><Sprite column={0} className="encounterRunner"/><Sprite column={1} row={1} className="encounterBoss"/><span>LIVE ENCOUNTER</span></div>
  </section>
 
@@ -67,5 +68,5 @@ export default function Home(){return <main className="officialHome">
  <section className="officialChain"><div><small>BUILT FOR ROBINHOOD CHAIN</small><h2>PLAY FIRST.<br/><em>VERIFY WHAT MATTERS.</em></h2><p>Movement and combat stay immediate in the browser. Wallet authentication protects competitive submissions, while verified seasonal records provide a transparent foundation for future rewards.</p></div><aside><span>SEASON 01 SYSTEM</span><b>WALLET-VERIFIED RUNS</b><b>ANTI-REPLAY SCORING</b><b>PUBLIC LEADERBOARD</b><b>ROBINHOOD CHAIN ONLY</b><a href="/play">START A VERIFIED RUN →</a></aside></section>
 
  <section className="officialCta"><small>THE WILD IS OPEN</small><h2>YOUR RUN<br/>STARTS NOW.</h2><p>Choose a runner. Learn the route. Outlast the chain.</p><a href="/play">PLAY REKTRUN</a></section>
- <footer className="officialFooter"><span>REKTRUN © 2026</span><b>BUILT FOR PLAYERS · ONCHAIN WHERE IT COUNTS</b><span>ROBINHOOD CHAIN</span></footer>
+ <footer className="officialFooter"><span className="officialFooterBrand"><i className="officialLogo"><img src="/rektrun-logo.png" alt=""/></i> REKTRUN © 2026</span><b>BUILT FOR PLAYERS · ONCHAIN WHERE IT COUNTS</b><span>ROBINHOOD CHAIN</span></footer>
  </main>}
