@@ -1,27 +1,71 @@
 import type {CSSProperties} from "react";
 import type {Metadata} from "next";
 
-export const metadata:Metadata={title:"REKTRUN — Enter the Wild Chain",description:"A browser action platformer built for Robinhood Chain."};
-const sprite=(x:number,y:number)=>({"--sx":`${x*33.333}%`,"--sy":`${y*33.333}%`} as CSSProperties);
-const features=[
- {n:"01",title:"CHOOSE YOUR RUNNER",copy:"Four distinct movement and combat styles. Find the build that carries you furthest.",x:0,y:0},
- {n:"02",title:"DEFEAT GUARDIANS",copy:"Learn unique attack patterns, break their defenses, and survive the final arena.",x:1,y:1},
- {n:"03",title:"COLLECT CORE SHARDS",copy:"Gather shards during every run to unlock gear, routes, and stronger loadouts.",x:1,y:3},
- {n:"04",title:"CLIMB THE LEADERBOARD",copy:"Wallet-verified runs rank each season and determine reward eligibility.",x:3,y:0}
+export const metadata:Metadata={title:"REKTRUN — Enter the Wild Chain",description:"Run, fight Guardians, collect Core Shards, and climb the Robinhood Chain leaderboard."};
+const sprite=(column:number,row:number)=>({"--sprite-x":`${column*33.333}%`,"--sprite-y":`${row*33.333}%`} as CSSProperties);
+const runners=[
+ {name:"BYTE",role:"BALANCED",color:"#b8ff39",column:0},
+ {name:"NOVA",role:"TWIN BLADE",color:"#47eaff",column:1},
+ {name:"EMBER",role:"HEAVY CLEAVE",color:"#ff7039",column:2},
+ {name:"VOID",role:"PHASE STRIKE",color:"#b34dff",column:3}
 ];
 const zones=[
- {n:"01",name:"VERDANT RUINS",pos:"0% 0%"},{n:"02",name:"SUNKEN CIRCUIT",pos:"33.333% 0%"},
- {n:"03",name:"EMBER VAULT",pos:"66.666% 33.333%"},{n:"04",name:"TITAN ENCOUNTER",pos:"100% 33.333%"}
+ {number:"01",name:"VERDANT RUINS",position:"0% 0%",detail:"Ancient roots and shifting stone."},
+ {number:"02",name:"SUNKEN CIRCUIT",position:"33.333% 0%",detail:"Broken bridges above the abyss."},
+ {number:"03",name:"EMBER VAULT",position:"66.666% 33.333%",detail:"Heat, traps, and unstable ground."},
+ {number:"04",name:"TITAN ARENA",position:"100% 33.333%",detail:"A final test against the Guardian."}
 ];
-export default function Home(){return <main className="forestLanding">
- <header className="forestNav"><a className="forestBrand" href="/"><i>R</i><b>REKTRUN</b></a><nav><a className="active" href="#game">GAME</a><a href="#world">WORLD</a><a href="/play">LEADERBOARD</a><a href="/docs">DOCS</a></nav><a className="forestWallet" href="/play">CONNECT WALLET</a><span className="chainMark">✦<small>ROBINHOOD<br/>CHAIN ONLY</small></span></header>
- <section className="forestHero" id="game"><div className="forestBackdrop"/><h1 className="srOnly">REKTRUN — Enter the Wild Chain</h1><div className="sideLore left">A SMALL<br/>RUNNER<br/><i/>A BIGGER<br/>TOMORROW</div><div className="sideLore right">ANCIENT<br/>ROOTS<br/>POWER<br/>A BRIGHTER<br/>CHAIN<i/></div><div className="heroControls"><div><a className="wildPlay" href="/play">▶ PLAY NOW</a><a className="trailer" href="#gameplay">◎ HOW TO PLAY</a></div><p>BROWSER ACTION PLATFORMER <em/> SEASON 01</p></div><div className="scrollCue">SCROLL TO EXPLORE ↓</div></section>
- <section className="featureGrid" id="world">{features.map(f=><article className="featureCard" key={f.n}><div className="featureCopy"><small>{f.n}</small><h2>{f.title}</h2><p>{f.copy}</p><b>→</b></div><div className="featureSprite" style={sprite(f.x,f.y)} aria-hidden="true"/></article>)}</section>
- <section className="worldIntro"><div><small>THE WILD CHAIN</small><h2>RUN. FIGHT.<br/><i>OUTLAST.</i></h2><p>REKTRUN is a fast browser action platformer where every run remixes the route. Leap through vertical ruins, cut through roaming creatures, collect core shards, and escape the unstoppable hunter before a Guardian seals the arena.</p><div className="statRow"><span><b>4</b> RUNNERS</span><span><b>4</b> GUARDIANS</span><span><b>∞</b> ROUTES</span></div><a href="/docs">READ THE GAME DOCS →</a></div><div className="worldArt"><i style={sprite(0,0)}/><i style={sprite(1,1)}/></div></section>
- <div className="sectionRibbon" id="gameplay"><span>A GLIMPSE INTO THE WILD</span><b>EXPLORE / FIGHT / COLLECT / RISE</b></div>
- <section className="zoneGrid">{zones.map(z=><article key={z.n}><div style={{backgroundPosition:z.pos}}/><span><b>{z.n}</b>{z.name}</span></article>)}</section>
- <section className="gameLoop"><div className="loopTitle"><small>HOW A RUN WORKS</small><h2>ONE RUN.<br/>NO SAFE PATH.</h2></div>{[["01","ENTER","Connect a Robinhood Chain wallet and choose a runner."],["02","ADAPT","Master jumps, dashes, melee timing, traps, and shifting terrain."],["03","SURVIVE","Defeat the Guardian. Your hunter disappears when the arena begins."],["04","RISE","Submit a verified score and climb the seasonal leaderboard."]].map(v=><article key={v[0]}><b>{v[0]}</b><h3>{v[1]}</h3><p>{v[2]}</p></article>)}</section>
- <section className="chainSection"><div><small>BUILT FOR ROBINHOOD CHAIN</small><h2>PLAYABLE FIRST.<br/>ONCHAIN WHERE IT COUNTS.</h2><p>Gameplay stays immediate in the browser. Wallet verification protects competitive submissions, while seasonal records create a transparent basis for future reward and airdrop eligibility.</p><p className="finePrint">Final reward rules, snapshot dates, and eligibility requirements will be published before each season closes.</p></div><div className="chainPanel"><span>SEASON 01</span><b>VERIFIED RUNS</b><b>ANTI-REPLAY SCORES</b><b>PUBLIC LEADERBOARD</b><b>ROBINHOOD CHAIN ONLY</b><a href="/play">START A VERIFIED RUN →</a></div></section>
- <section className="docsCta"><small>FIELD MANUAL / VERSION 01</small><h2>KNOW THE WILD<br/>BEFORE IT KNOWS YOU.</h2><p>Controls, combat, runners, Guardians, scoring, wallet rules, and seasonal rewards—documented in one place.</p><a href="/docs">OPEN DOCS</a></section>
- <footer className="forestFooter"><span>REKTRUN // ENTER THE WILD CHAIN</span><b>♠ BUILT FOR PLAYERS. ONCHAIN FOREVER. ♠</b><span>ROBINHOOD CHAIN ONLY</span></footer>
+
+function Sprite({column,row=0,className=""}:{column:number;row?:number;className?:string}){return <i className={`officialSprite ${className}`} style={sprite(column,row)} aria-hidden="true"/>}
+
+export default function Home(){return <main className="officialHome">
+ <header className="officialNav">
+  <a className="officialBrand" href="/" aria-label="REKTRUN home"><span>R</span><b>REKTRUN</b></a>
+  <nav aria-label="Primary navigation"><a className="active" href="#game">GAME</a><a href="#runners">RUNNERS</a><a href="#world">WORLD</a><a href="/docs">DOCS</a></nav>
+  <div className="officialNavActions"><small>ROBINHOOD CHAIN<br/>EXCLUSIVE</small><a href="/play">CONNECT WALLET</a></div>
+ </header>
+
+ <section className="officialHero" id="game">
+  <div className="officialHeroShade"/>
+  <div className="officialHeroCopy">
+   <p className="officialKicker"><span/> SEASON 01 · THE WILD CHAIN</p>
+   <h1>REKT<span>RUN</span></h1>
+   <p className="officialLead">A fast browser action platformer where every route shifts, every Guardian fights differently, and every verified run counts.</p>
+   <div className="officialHeroButtons"><a className="officialPrimary" href="/play">PLAY NOW <b>▶</b></a><a className="officialSecondary" href="#how">HOW TO PLAY</a></div>
+   <div className="officialHeroMeta"><span>BROWSER NATIVE</span><span>MELEE COMBAT</span><span>WALLET VERIFIED</span></div>
+  </div>
+  <div className="officialHeroStamp"><b>01</b><span>RUN<br/>FIGHT<br/>OUTLAST</span></div>
+  <a className="officialScroll" href="#runners">EXPLORE THE WILD ↓</a>
+ </section>
+
+ <section className="officialPillars" aria-label="Core game features">
+  <article><small>01 / CHOOSE</small><h3>Four runners.<br/>Four combat styles.</h3><Sprite column={0}/></article>
+  <article><small>02 / FIGHT</small><h3>Read the pattern.<br/>Break the Guardian.</h3><Sprite column={1} row={1}/></article>
+  <article><small>03 / COLLECT</small><h3>Claim Core Shards.<br/>Unlock your build.</h3><Sprite column={1} row={3}/></article>
+  <article><small>04 / RISE</small><h3>Verified scores.<br/>Seasonal rankings.</h3><Sprite column={3}/></article>
+ </section>
+
+ <section className="officialRoster" id="runners">
+  <div className="officialSectionHead"><div><small>THE RUNNERS</small><h2>CHOOSE YOUR<br/><em>PLAYSTYLE.</em></h2></div><p>Each runner has a distinct attack rhythm, power curve, and signature skill. Higher-tier runners hit harder—but timing still wins every fight.</p></div>
+  <div className="officialRosterGrid">{runners.map((runner,index)=><article key={runner.name} style={{"--runner-color":runner.color} as CSSProperties}><div className="officialRunnerFrame"><span>0{index+1}</span><Sprite column={runner.column}/></div><div><small>{runner.role}</small><h3>{runner.name}</h3><b>{index===0?"AVAILABLE":`${[20,35,50][index-1]} SHARDS`}</b></div></article>)}</div>
+ </section>
+
+ <section className="officialWorld" id="world">
+  <div className="officialWorldCopy"><small>THE WILD CHAIN</small><h2>NO TWO RUNS<br/><em>STAY THE SAME.</em></h2><p>Vertical ruins, breakable routes, roaming creatures, traps, and shifting platform patterns remix each expedition. Reach the arena, defeat its Guardian, and carry your score onto the chain.</p><dl><div><dt>4</dt><dd>RUNNERS</dd></div><div><dt>4</dt><dd>GUARDIANS</dd></div><div><dt>∞</dt><dd>ROUTES</dd></div></dl><a href="/docs">READ THE FIELD MANUAL →</a></div>
+  <div className="officialEncounter"><div className="officialEncounterScene"/><Sprite column={0} className="encounterRunner"/><Sprite column={1} row={1} className="encounterBoss"/><span>LIVE ENCOUNTER</span></div>
+ </section>
+
+ <section className="officialZones"><div className="officialSectionBar"><span>CAMPAIGN BIOMES</span><b>EXPLORE / FIGHT / COLLECT / RISE</b></div><div className="officialZoneGrid">{zones.map(zone=><article key={zone.number}><div className="officialZoneArt" style={{backgroundPosition:zone.position}}/><div><small>{zone.number}</small><h3>{zone.name}</h3><p>{zone.detail}</p></div></article>)}</div></section>
+
+ <section className="officialLoop" id="how"><div className="officialLoopIntro"><small>HOW A RUN WORKS</small><h2>ONE RUN.<br/><em>NO SAFE PATH.</em></h2></div>{[
+  ["01","ENTER","Connect a Robinhood Chain wallet and choose your loadout."],
+  ["02","ADAPT","Jump, dash, strike, and navigate a route that changes every run."],
+  ["03","DEFEAT","Survive the arena and break the Guardian’s unique attack pattern."],
+  ["04","RISE","Submit a verified score and climb the seasonal leaderboard."]
+ ].map(step=><article key={step[0]}><small>{step[0]}</small><h3>{step[1]}</h3><p>{step[2]}</p></article>)}</section>
+
+ <section className="officialChain"><div><small>BUILT FOR ROBINHOOD CHAIN</small><h2>PLAY FIRST.<br/><em>VERIFY WHAT MATTERS.</em></h2><p>Movement and combat stay immediate in the browser. Wallet authentication protects competitive submissions, while verified seasonal records provide a transparent foundation for future rewards.</p></div><aside><span>SEASON 01 SYSTEM</span><b>WALLET-VERIFIED RUNS</b><b>ANTI-REPLAY SCORING</b><b>PUBLIC LEADERBOARD</b><b>ROBINHOOD CHAIN ONLY</b><a href="/play">START A VERIFIED RUN →</a></aside></section>
+
+ <section className="officialCta"><small>THE WILD IS OPEN</small><h2>YOUR RUN<br/>STARTS NOW.</h2><p>Choose a runner. Learn the route. Outlast the chain.</p><a href="/play">PLAY REKTRUN</a></section>
+ <footer className="officialFooter"><span>REKTRUN © 2026</span><b>BUILT FOR PLAYERS · ONCHAIN WHERE IT COUNTS</b><span>ROBINHOOD CHAIN</span></footer>
  </main>}
