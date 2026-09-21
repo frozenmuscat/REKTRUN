@@ -37,6 +37,17 @@
 /* Character art must stay fully transparent outside the sprite silhouette. */
 .selectScene .chosenRunner,.selectScene .chosenRunner>i,.selectScene .chosenRunner>.runnerSprite{background-color:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;clip-path:none!important;backdrop-filter:none!important}
 .selectScene .chosenRunner>.runnerSprite{filter:none!important}
+/* Title-screen collision-safe layout */
+.titleScene .gameLogo{display:none!important}
+.titleScene .hamb{top:24px;right:24px;width:72px;height:64px;font-size:28px;box-shadow:5px 5px 0 #000}
+.titleScene .connectCorner{top:24px;right:116px;min-width:170px;height:46px;padding:10px 16px;white-space:nowrap;box-shadow:4px 4px 0 #000}
+.titleScene .titleCrew{top:4%;width:min(690px,58vw);height:300px}
+.titleScene .titleCrew .runnerSprite{width:190px;height:190px}
+.titleScene .titleCrew .runnerSprite:nth-child(1){left:2%;top:92px}.titleScene .titleCrew .runnerSprite:nth-child(2){left:27%;top:0}.titleScene .titleCrew .runnerSprite:nth-child(3){left:52%;top:38px}.titleScene .titleCrew .runnerSprite:nth-child(4){right:1%;top:100px}
+.titleScene .pixelBtn.main{bottom:17%;min-width:200px;padding:16px 28px;font-size:20px}.titleScene .pixelStatus{bottom:9%;max-width:55vw;text-align:center}.titleScene .pixelBtn.credits{left:5vw;bottom:4vh;min-width:150px;padding:15px 24px;font-size:18px}
+@media(max-height:760px){.titleScene .titleCrew{top:1%;transform:translateX(-50%) scale(.78);transform-origin:top center}.titleScene .pixelBtn.main{bottom:14%}.titleScene .pixelStatus{bottom:5%}}
+@media(max-width:800px){.titleScene .titleCrew{top:7%;width:620px;height:270px;transform:translateX(-50%) scale(.64);transform-origin:top center}.titleScene .hamb{top:16px;right:16px;width:58px;height:52px}.titleScene .connectCorner{top:16px;right:88px;min-width:145px;height:40px;font-size:10px}.titleScene .pixelBtn.main{bottom:18%;min-width:180px}.titleScene .pixelBtn.credits{left:18px;bottom:18px}.titleScene .pixelStatus{bottom:10%}}
+@media(max-width:480px){.titleScene .titleCrew{top:10%;transform:translateX(-50%) scale(.52)}.titleScene .connectCorner{right:82px;min-width:125px;padding:8px}.titleScene .pixelBtn.credits{min-width:120px;font-size:14px}.titleScene .pixelBtn.main{bottom:20%}}
 /* Expanded campaign landing and field manual */
 @keyframes wildFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}@keyframes wildGlow{0%,100%{filter:drop-shadow(0 0 8px #b6ff3344)}50%{filter:drop-shadow(0 0 25px #b6ff3399)}}@keyframes forestPan{0%,100%{background-position:46% 48%}50%{background-position:54% 48%}}
 .forestBackdrop{animation:forestPan 24s ease-in-out infinite;transform:scale(1.035)}.scrollCue{position:absolute;z-index:4;bottom:18px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:2px;color:#a8c1b1;animation:wildFloat 1.8s ease-in-out infinite}
