@@ -1,4 +1,5 @@
-import type {CSSProperties,Metadata} from "react";
+import type {CSSProperties} from "react";
+import type {Metadata} from "next";
 
 export const metadata:Metadata={title:"REKTRUN — Enter the Wild Chain",description:"A browser action platformer built for Robinhood Chain."};
 const sprite=(x:number,y:number)=>({"--sx":`${x*33.333}%`,"--sy":`${y*33.333}%`} as CSSProperties);

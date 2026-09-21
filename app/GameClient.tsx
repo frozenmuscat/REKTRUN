@@ -25,7 +25,7 @@ const empty:Profile={shards:0,runner:"byte",gear:"blade",unlockedRunners:["byte"
 
 export default function GameClient(){
  const canvas=useRef<HTMLCanvasElement>(null),raf=useRef(0),keys=useRef(new Set<string>()),run=useRef<Run|null>(null);
- const[screen,setScreen]=useState<Screen>("loading"),[loading,setLoading]=useState(0),[wallet,setWallet]=useState(""),[status,setStatus]=useState("WALLET REQUIRED");
+ const[screen,setScreen]=useState<string>("loading"),[loading,setLoading]=useState(0),[wallet,setWallet]=useState(""),[status,setStatus]=useState("WALLET REQUIRED");
  const[profile,setProfile]=useState<Profile>(empty),[runnerIndex,setRunnerIndex]=useState(0),[bossIndex,setBossIndex]=useState(0),[gearOpen,setGearOpen]=useState(false);
  const[scores,setScores]=useState<Score[]>([]),[stats,setStats]=useState({score:0,distance:0,gems:0,rekt:0}),[soundOn,setSoundOn]=useState(true);
  const board=useCallback(async()=>{const r=await fetch("/api/leaderboard",{cache:"no-store"});if(r.ok)setScores((await r.json()).scores)},[]);
